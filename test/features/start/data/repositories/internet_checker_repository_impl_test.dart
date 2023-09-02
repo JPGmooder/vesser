@@ -3,33 +3,36 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:vesser/src/features/start/data/repositories/internet_checker_repository_impl.dart';
 import 'package:vesser/src/features/start/data/services/check_internet_connection_service.dart';
-import 'package:vesser/src/features/start/logic/model/internet_checker.dart';
+import 'package:vesser/src/features/start/logic/entities/internet_checker.dart';
 
-import 'internet_checker_repository_impl.mocks.dart';
+import 'internet_checker_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<CheckInternetConnectionService>()])
+@GenerateNiceMocks([
+  MockSpec<CheckInternetConnectionService>(),
+])
 void main() {
-  late InternetConnectionRepositoryImpl repositoryImpl;
-  late MockCheckInternetConnectionService<InternetChecker>
+  late MockCheckInternetConnectionService<InternetCheckerEntity>
       internetConnectionService;
-  late InternetChecker internetStatus;
+  late InternetConnectionRepositoryImpl repositoryImpl;
+  late InternetCheckerEntity internetStatus;
 
   setUp(() {
-    internetConnectionService = MockCheckInternetConnectionService();
+    internetConnectionService =
+        MockCheckInternetConnectionService<InternetCheckerEntity>();
     repositoryImpl = InternetConnectionRepositoryImpl(
-        networkSource: internetConnectionService);
-    internetStatus = InternetChecker(
+        internetConnectionService: internetConnectionService);
+    internetStatus = InternetCheckerEntity(
         connectivityStatus: InternetConnectionState.wifi,
         hasInternetConnection: true);
   });
   test("Should return a stream when connection is established", () async {
-    when(internetConnectionService.getInternetChanges)
+    when(internetConnectionService.internetConnectionChanges)
         .thenAnswer((_) => Stream.fromFuture(Future.delayed(
               Duration(seconds: 1),
               () => internetStatus,
             )));
     var response = await repositoryImpl.initilizeInternetConnection();
     await expectLater(response, emitsInOrder([internetStatus]));
-    verify(internetConnectionService.getInternetChanges).called(1);
+    verify(internetConnectionService.internetConnectionChanges).called(1);
   });
 }

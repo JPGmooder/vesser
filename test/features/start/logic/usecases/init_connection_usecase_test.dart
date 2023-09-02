@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:vesser/src/common/models/exceptions.dart';
-import 'package:vesser/src/features/start/logic/model/internet_checker.dart';
+import 'package:vesser/src/features/start/logic/entities/internet_checker.dart';
 import 'package:vesser/src/features/start/logic/repositories/internet_connection_repository.dart';
 import 'package:vesser/src/features/start/logic/usecases/initi_connecetion_usecase.dart';
 
@@ -12,12 +12,12 @@ import 'init_connection_usecase_test.mocks.dart';
 void main() {
   late MockInternetConnectionRepository repository;
   late InitConnectionUseCase usecase;
-  late InternetChecker checker;
+  late InternetCheckerEntity checker;
   setUp(() {
     repository = MockInternetConnectionRepository();
     usecase = InitConnectionUseCase(repository: repository);
   });
-  checker = InternetChecker(
+  checker = InternetCheckerEntity(
       connectivityStatus: InternetConnectionState.wifi,
       hasInternetConnection: true);
 
@@ -33,7 +33,7 @@ void main() {
     });
 
     setUp(() {
-      checker = InternetChecker(
+      checker = InternetCheckerEntity(
           connectivityStatus: InternetConnectionState.none,
           hasInternetConnection: false);
     });
@@ -49,7 +49,7 @@ void main() {
     });
 
     setUp(() {
-      checker = InternetChecker(
+      checker = InternetCheckerEntity(
           connectivityStatus: InternetConnectionState.none,
           hasInternetConnection: false);
     });

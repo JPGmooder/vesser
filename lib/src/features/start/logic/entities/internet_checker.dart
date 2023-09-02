@@ -1,4 +1,4 @@
-enum InternetConnectionState { wifi, mobile, lan, none }
+enum InternetConnectionState { wifi, mobile, lan, vpn, none }
 
 abstract class _InternetChecker<T> {
   bool hasInternetConnection;
@@ -9,13 +9,14 @@ abstract class _InternetChecker<T> {
   });
 }
 
-class InternetChecker implements _InternetChecker<InternetConnectionState> {
+class InternetCheckerEntity
+    implements _InternetChecker<InternetConnectionState> {
   @override
   InternetConnectionState connectivityStatus;
 
   @override
   bool hasInternetConnection;
-  InternetChecker({
+  InternetCheckerEntity({
     required this.connectivityStatus,
     required this.hasInternetConnection,
   });

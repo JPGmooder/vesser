@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:vesser/src/features/start/logic/model/internet_checker.dart'
+import 'package:vesser/src/features/start/logic/entities/internet_checker.dart'
     as _i4;
 import 'package:vesser/src/features/start/logic/repositories/internet_connection_repository.dart'
     as _i2;
@@ -28,16 +28,17 @@ import 'package:vesser/src/features/start/logic/repositories/internet_connection
 class MockInternetConnectionRepository extends _i1.Mock
     implements _i2.InternetConnectionRepository {
   @override
-  _i3.FutureOr<_i3.Stream<_i4.InternetChecker>> initilizeInternetConnection() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #initilizeInternetConnection,
-          [],
-        ),
-        returnValue: _i3.Future<_i3.Stream<_i4.InternetChecker>>.value(
-            _i3.Stream<_i4.InternetChecker>.empty()),
-        returnValueForMissingStub:
-            _i3.Future<_i3.Stream<_i4.InternetChecker>>.value(
-                _i3.Stream<_i4.InternetChecker>.empty()),
-      ) as _i3.FutureOr<_i3.Stream<_i4.InternetChecker>>);
+  _i3.FutureOr<_i3.Stream<_i4.InternetCheckerEntity>>
+      initilizeInternetConnection() => (super.noSuchMethod(
+            Invocation.method(
+              #initilizeInternetConnection,
+              [],
+            ),
+            returnValue:
+                _i3.Future<_i3.Stream<_i4.InternetCheckerEntity>>.value(
+                    _i3.Stream<_i4.InternetCheckerEntity>.empty()),
+            returnValueForMissingStub:
+                _i3.Future<_i3.Stream<_i4.InternetCheckerEntity>>.value(
+                    _i3.Stream<_i4.InternetCheckerEntity>.empty()),
+          ) as _i3.FutureOr<_i3.Stream<_i4.InternetCheckerEntity>>);
 }
