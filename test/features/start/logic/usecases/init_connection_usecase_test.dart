@@ -8,13 +8,13 @@ import 'package:vesser/src/features/start/logic/usecases/initi_connecetion_useca
 
 import 'init_connection_usecase_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<InternetConnectionRepository>()])
+@GenerateNiceMocks([MockSpec<IInternetConnectionRepository>()])
 void main() {
-  late MockInternetConnectionRepository repository;
+  late MockIInternetConnectionRepository repository;
   late InitConnectionUseCase usecase;
   late InternetCheckerEntity checker;
   setUp(() {
-    repository = MockInternetConnectionRepository();
+    repository = MockIInternetConnectionRepository();
     usecase = InitConnectionUseCase(repository: repository);
   });
   checker = InternetCheckerEntity(

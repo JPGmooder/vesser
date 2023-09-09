@@ -3,13 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:vesser/src/features/start/logic/entities/internet_checker.dart'
-    as _i4;
-import 'package:vesser/src/features/start/logic/repositories/internet_connection_repository.dart'
     as _i2;
+import 'package:vesser/src/features/start/logic/repositories/internet_connection_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,23 +22,58 @@ import 'package:vesser/src/features/start/logic/repositories/internet_connection
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [InternetConnectionRepository].
+class _FakeInternetCheckerEntity_0 extends _i1.SmartFake
+    implements _i2.InternetCheckerEntity {
+  _FakeInternetCheckerEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [IInternetConnectionRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockInternetConnectionRepository extends _i1.Mock
-    implements _i2.InternetConnectionRepository {
+class MockIInternetConnectionRepository extends _i1.Mock
+    implements _i3.IInternetConnectionRepository {
   @override
-  _i3.FutureOr<_i3.Stream<_i4.InternetCheckerEntity>>
+  _i4.FutureOr<_i4.Stream<_i2.InternetCheckerEntity>>
       initilizeInternetConnection() => (super.noSuchMethod(
             Invocation.method(
               #initilizeInternetConnection,
               [],
             ),
             returnValue:
-                _i3.Future<_i3.Stream<_i4.InternetCheckerEntity>>.value(
-                    _i3.Stream<_i4.InternetCheckerEntity>.empty()),
+                _i4.Future<_i4.Stream<_i2.InternetCheckerEntity>>.value(
+                    _i4.Stream<_i2.InternetCheckerEntity>.empty()),
             returnValueForMissingStub:
-                _i3.Future<_i3.Stream<_i4.InternetCheckerEntity>>.value(
-                    _i3.Stream<_i4.InternetCheckerEntity>.empty()),
-          ) as _i3.FutureOr<_i3.Stream<_i4.InternetCheckerEntity>>);
+                _i4.Future<_i4.Stream<_i2.InternetCheckerEntity>>.value(
+                    _i4.Stream<_i2.InternetCheckerEntity>.empty()),
+          ) as _i4.FutureOr<_i4.Stream<_i2.InternetCheckerEntity>>);
+  @override
+  _i4.FutureOr<_i2.InternetCheckerEntity> getCurrentInternetConnection() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentInternetConnection,
+          [],
+        ),
+        returnValue: _i4.Future<_i2.InternetCheckerEntity>.value(
+            _FakeInternetCheckerEntity_0(
+          this,
+          Invocation.method(
+            #getCurrentInternetConnection,
+            [],
+          ),
+        )),
+        returnValueForMissingStub: _i4.Future<_i2.InternetCheckerEntity>.value(
+            _FakeInternetCheckerEntity_0(
+          this,
+          Invocation.method(
+            #getCurrentInternetConnection,
+            [],
+          ),
+        )),
+      ) as _i4.FutureOr<_i2.InternetCheckerEntity>);
 }

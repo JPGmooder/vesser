@@ -1,4 +1,4 @@
-enum InternetConnectionState { wifi, mobile, lan, vpn, none }
+enum InternetConnectionState { wifi, mobile, lan, vpn, none, undefined }
 
 abstract class _InternetChecker<T> {
   bool hasInternetConnection;

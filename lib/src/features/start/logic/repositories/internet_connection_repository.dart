@@ -2,6 +2,7 @@ import 'dart:async';
 
 import '../entities/internet_checker.dart';
 
-abstract class InternetConnectionRepository {
+abstract interface class IInternetConnectionRepository {
   FutureOr<Stream<InternetCheckerEntity>> initilizeInternetConnection();
+  FutureOr<InternetCheckerEntity> getCurrentInternetConnection();
 }

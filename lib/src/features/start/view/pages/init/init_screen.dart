@@ -1,4 +1,12 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/widgets.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:vesser/src/features/start/data/repositories/internet_checker_repository_impl.dart';
+import 'package:vesser/src/features/start/data/services/check_internet_connection_service.dart';
+import 'package:vesser/src/features/start/logic/entities/internet_checker.dart';
+import 'package:vesser/src/features/start/logic/usecases/initi_connecetion_usecase.dart';
 
 /// {@template init_screen}
 /// InitScreen widget.
@@ -20,10 +28,20 @@ class InitScreen extends StatefulWidget {
 /// State for widget InitScreen.
 class _InitScreenState extends State<InitScreen> {
   /* #region Lifecycle */
+  late InitConnectionUseCase _internetCase;
+  late Stream<InternetCheckerEntity> _currentInternetChecker;
+  late StreamSubscription _currentInternerSub;
+  InternetCheckerEntity? entity;
   @override
   void initState() {
+    _internetCase = InitConnectionUseCase(
+        repository: InternetConnectionRepositoryImpl(
+            internetConnectionService: CheckInternetConnectionServiceImpl(
+                statusService: CheckInternetStatusServiceImpl(
+                    connectionSource: InternetConnection()),
+                typeService: CheckInternetTypeServiceImpl(
+                    connectionSource: Connectivity()))));
     super.initState();
-    // Initial state initialization
   }
 
   @override
