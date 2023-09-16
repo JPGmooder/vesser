@@ -2,21 +2,34 @@ import 'dart:async';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../common/helpers/platform.dart';
+import 'package:vesser/src/core/utils/logger.dart';
+import 'package:vesser/src/features/initialization/logic/initialization_factory.dart';
+import 'package:vesser/src/features/initialization/logic/initialization_proccessor.dart';
+import 'package:vesser/src/features/initialization/logic/initialization_steps.dart';
+import 'package:vesser/src/features/initialization/model/intialization_hook.dart';
+import '../../../../../core/utils/helpers/platform.dart';
 
 import 'starter.dart';
 
-class AppStarterImpl implements AppStarter {
+class AppStarterImpl
+    with
+        InitializationFactoryImpl,
+        InitializationSteps,
+        InitializationProccessor
+    implements AppStarter {
   @override
   final Platformer platformer;
+  @override
+  final InitializationHook initializationHook;
 
-  AppStarterImpl({required this.platformer});
+  AppStarterImpl({required this.platformer, required this.initializationHook});
 
   @override
-  AppLoader loadApp() {
+  AppLoader loadApp(result) {
     late Widget app;
 
     switch (platformer.getPlatform()) {
@@ -37,8 +50,15 @@ class AppStarterImpl implements AppStarter {
   }
 
   @override
-  void call() {
-    loadApp().call();
+  void call() async {
+    var bindings = WidgetsFlutterBinding.ensureInitialized()..deferFirstFrame();
+
+    FlutterError.onError = logger.logFlutterError;
+    PlatformDispatcher.instance.onError = logger.logPlatformDispatcherError;
+    final initializationResult = await proccessInitialization(
+        steps: initializationSteps, hook: initializationHook, factory: this);
+
+    loadApp(initializationResult).call();
   }
 }
 
@@ -51,7 +71,7 @@ class AppAndroidLoader implements AppLoader {
 
   @override
   void call() {
-    runZonedGuarded(() => runApp(appWidget), (error, stack) {});
+    runApp(appWidget);
   }
 }
 
@@ -64,7 +84,7 @@ class AppIosLoader implements AppLoader {
 
   @override
   void call() {
-    runZonedGuarded(() => runApp(appWidget), (error, stack) {});
+runApp(appWidget);
   }
 }
 
@@ -77,7 +97,7 @@ class AppMacosLoader implements AppLoader {
 
   @override
   void call() {
-    runZonedGuarded(() => runApp(appWidget), (error, stack) {});
+ runApp(appWidget);
   }
 }
 
@@ -90,6 +110,6 @@ class AppWindowsLoader implements AppLoader {
 
   @override
   void call() {
-    runZonedGuarded(() => runApp(appWidget), (error, stack) {});
+ runApp(appWidget);
   }
 }

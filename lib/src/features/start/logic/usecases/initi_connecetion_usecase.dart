@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../../../../common/models/exceptions.dart';
-import '../../../../common/models/usecase.dart';
+import '../../../../core/models/exceptions.dart';
+import '../../../../core/models/usecase.dart';
 import '../entities/internet_checker.dart';
 import '../repositories/internet_connection_repository.dart';
 

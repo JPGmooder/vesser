@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:vesser/src/common/models/exceptions.dart';
+import 'package:vesser/src/core/models/exceptions.dart';
 import 'package:vesser/src/features/start/logic/entities/internet_checker.dart';
 import 'package:vesser/src/features/start/logic/repositories/internet_connection_repository.dart';
 import 'package:vesser/src/features/start/logic/usecases/initi_connecetion_usecase.dart';

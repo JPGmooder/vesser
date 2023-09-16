@@ -1,22 +1,23 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vesser/src/features/initialization/model/dependencies.dart';
+import 'package:vesser/src/features/initialization/model/intialization_hook.dart';
 
-import '../../../../../common/helpers/platform.dart';
+import '../../../../../core/utils/helpers/platform.dart';
 
 abstract class AppStarter {
   final Platformer platformer;
+  final InitializationHook initializationHook;
 
   AppStarter({
+    required this.initializationHook,
     required this.platformer,
   });
 
-  AppLoader loadApp();
+  AppLoader loadApp(InitializationResult initResult);
 
-  void call() {
-    var loader = loadApp();
-    loader();
-  }
+   void call();
 }
 
 abstract class AppLoader {

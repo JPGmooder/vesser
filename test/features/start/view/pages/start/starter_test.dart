@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
-import 'package:vesser/src/common/helpers/platform.dart';
+import 'package:vesser/src/core/utils/helpers/platform.dart';
 import 'package:vesser/src/features/start/view/pages/start/starter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vesser/src/features/start/view/pages/start/starter_io.dart';
